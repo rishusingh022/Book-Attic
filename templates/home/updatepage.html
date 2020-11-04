@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+Order Tracking Page
+{% endblock title %}
+{% load static %}
+{% load tag_library %}
+{% block body %}
+<div class="container mt-5" style="width:70%;font-family: 'El Messiri', sans-serif;">
+    <h2><span style="border-bottom:2px dashed">Tracking Details For OrderID#</span> <b>{{updates.0.order_id}}<b></h2>
+    {% for update in updates %}
+    <div class="conatiner mx-4 my-5" style="width:80%;">
+        <h3 class="mb-3"><b>Update Message:</b> <span class="text-success">{{update.update}}</span></h3>
+        <h3 class="mb-3"><b>Days Left To Arrive:</b> <span class="text-danger">{{update.daysleft}}</span></h3>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:{{update.daysleft|to_int_progress}}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <hr>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

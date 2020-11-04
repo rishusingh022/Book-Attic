@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block titile %}Search results
+{% endblock titile %}
+{% block body %}
+<div class="container pt-3" style="width: 75%;">
+
+    <div class="my-3 p-3 bg-white rounded shadow-lg">
+        <h2 class="border-bottom border-gray pb-3 mb-0">Search Results:</h2>
+
+        {% if allposts|length < 1 %}
+        
+            <p class="mt-4">
+            No result found<br>
+            Your search query: <b>{{serchquery}}</b> did not did not match any documents <br>
+            Suggestions:
+            <ul>
+            <li>Try different Keywords.</li>
+            <li>Make sure that all words are spelled correctly.</li>
+            <li>Try more general Keywords.</li>
+            <li>Try fewer Keyqords.</li>
+            </ul>
+            </p>
+
+        {% endif %} 
+
+        {% for post in allposts %}
+        
+        <div class="media text pt-2">
+         
+            <div class="media-body pb-0 mb-0 border-bottom border-gray">
+                <h4>Book Name:</h4><h3><a href='/' class="d-block text-gray-dark">{{post.book_name}}</a></h3><br>
+                {% comment %} <small>{{post.content| truncatechars:300}}</small> {% endcomment %}
+                <h4>Book Category:</h4><h3><a href='/' class="d-block text-gray-dark">{{post.category}}</a></h3><br>
+                <h4>Book Price:</h4><h3><a href='/' class="d-block text-gray-dark">{{post.price}}</a></h3><br>
+             
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+{% endblock body %}

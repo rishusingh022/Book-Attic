@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block title %}
+Home page
+{% endblock title %}
+{% block body %}
+{% load static %}
+<div class="jumbotron shadow-lg" style="background: url('../media/home/images/img/jumbotron.jpg') no-repeat center center;width:100%;
+  height: 100%; border-radius: 0px; ">
+
+  <div class="container" style="font-family: 'El Messiri', sans-serif; font-size: 30px;">
+  <h1 style="margin-top: 10%"><b>Have Old Books?</b></h1>
+   <h2 class="mt-3">
+    Why don't you sell them?
+   </h2>
+  <a type="button" class="btn btn-lg btn-success mt-5 mb-4 shadow" href="/sellbook"><b>Start Selling</b></a>
+  </div>
+
+</div>
+
+
+
+      <div class="container text-center" style="font-family: 'El Messiri', sans-serif; font-size: 30px;">
+                  <h1 style="margin: 100px; border-bottom: 2px black dashed;">
+                   <span> HERE IS ALL CATEGORY WISE LISTED BOOKS</span>
+                  </h1>
+      </div>     
+                  
+{% for product,range in allProds %}
+ 
+ 
+<div class="container my-5 shadow-lg p-5" style="font-family: 'El Messiri', sans-serif; font-size: 30px;">
+ 
+  <h1 class="text-center mb-5" > <span style="border-bottom: 4px black double;" ><b>{{product.0.category}}</b></span></h1>
+
+  <div id="carouselExampleControls{{forloop.counter}}" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner text-center">
+      <div class="carousel-item active">
+        {% for i in product|slice:"0:5" %}
+   
+          <div class="col-xs-2 col-sm-2 col-md-2 text-center" style="display: inline-block;">
+            <div class="card mb-5" style="width: 10rem;">
+              <img src='{{i.image.url}}' class="card-img-top p-2" style="width: 158px; height: 230px;">
+              <div class="card-body">
+                <h6 class="card-title" id = "namepr{{i.slug}}">{{i.book_name|truncatechars:23}}</h6>
+                <small><p class="card-text text-danger" >&#8377;{{i.price}}</p></small>
+                <span id='divpr{{i.slug}}'><button id='pr{{i.slug}}' class="btn btn-primary cart"><b>Add To Cart</b></button></span>
+              </div>
+            </div>
+          </div>
+    
+        {% endfor %}
+      </div>
+
+
+      <div class="carousel-item">
+        {% for i in product|slice:"5:" %}
+
+        <div class="col-xs-2 col-sm-2 col-md-2 text-center" style="display: inline-block;">
+          <div class="card mb-5" style="width: 10rem;">
+            <img src='{{i.image.url}}' class="card-img-top p-2" style="width: 158px; height: 230px;">
+            <div class="card-body">
+              <h6 class="card-title" id = "namepr{{i.slug}}">{{i.book_name|truncatechars:23}}</h6>
+              <small><p class="card-text text-danger" >&#8377;{{i.price}}</p></small>
+              <span id='divpr{{i.slug}}'><button id='pr{{i.slug}}' class="btn btn-primary cart"><b>Add To Cart</b></button></span>
+            </div>
+          </div>
+        </div>
+        {% if forloop.counter|divisibleby:5 and forloop.counter > 0 and not forloop.last %}
+          </div><div class="carousel-item">
+  
+        {% endif %}
+        {% endfor %}
+      </div>
+ 
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls{{forloop.counter}}" role="button" data-slide="prev" style="width: 20px;">
+      <span class="carousel-control-prev-icon bg-dark " aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls{{forloop.counter}}" role="button" data-slide="next" style="width: 20px;">
+      <span class="carousel-control-next-icon bg-dark " aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  
+  </div>
+
+</div>
+
+{% endfor %}
+
+
+{% endblock body %}
+
+{% block script %}
+
+<script>
+// Find out the cart items from localStorage
+if (localStorage.getItem('cart') == null) {
+    var cart = {};
+} else {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    updateCart(cart);
+}
+// If the add to cart button is clicked, add/increment the item
+$('.cart').click(function() {
+    var idstr = this.id.toString();
+    if (cart[idstr] != undefined) {
+        qty = cart[idstr][0] + 1;
+    } else {
+        qty = 1;
+        name = document.getElementById('name'+idstr).innerHTML;
+        cart[idstr] = [qty,name];
+    }
+    updateCart(cart);
+    updatePopover(cart)
+    
+});
+//Add Popover to cart
+$('#popcart').popover();
+updatePopover(cart);
+
+function updatePopover(cart)
+{
+    var popStr = "";
+    var i = 1;
+    popStr = popStr + "<a class='btn btn-success btn-block ' href='/checkout'>Checkout</a> <br>";
+    for (var item in cart){
+        popStr = popStr + "<b>" + i + "</b>. ";
+        popStr = popStr + document.getElementById('name' + item).innerHTML.slice(0, 19) + "... Qty: " + cart[item][0] + '<br>';
+        i = i+1;
+    }
+    
+    document.getElementById('popcart').setAttribute('data-content', popStr);
+    $('#popcart').popover();
+}
+function clearCart() {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    localStorage.clear();
+    cart = {};
+    updateCart(cart);
+}
+function updateCart(cart) {
+    for (var item in cart) {
+        document.getElementById('div' + item).innerHTML = "<p style='font-size:15px;'>Added To Cart</p>";
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+$('#yoclear').click(function() {
+    cart = JSON.parse(localStorage.getItem('cart'));
+    console.log(cart);
+    for (var item in cart) {
+        document.getElementById('div' + item).innerHTML = '<a href="/" class="btn btn-primary cart">Add To Cart</a>'
+    }
+    localStorage.clear();
+    cart = {};
+    updateCart(cart);
+    
+});
+
+</script>
+
+{% endblock script %}

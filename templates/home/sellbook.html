@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Sell Book
+{% endblock title %}
+{% block body %}
+
+{% if user.is_authenticated %}
+
+<div class="container mt-5 mb-5" style="text-align: center;">
+    <form action="savebook" enctype='multipart/form-data' method="post" style="font-family: 'El Messiri', sans-serif;">
+        {% csrf_token %}
+        {{ form.media }}
+        <div class="container" style="width: 78%;">
+            <h4>Enter The Book Name Which You Want To Sell</h4>
+            <span id="name">{{form.book_name}}</span>
+            <h4 class='mt-4'>Enter The Category Name</h4>
+            <span>{{form.category}}</span>
+            <h4 class='mt-4'>Enter At What Price You Want To Sell The Book </h4>
+            <span>{{form.price}}</span>
+            <h4 class='mt-4'>Upload An Image Of Your Book</h4>
+            <span class="btn btn-sm">{{form.image}}</span>
+            <h4 class='mt-4'>Enter Your Loction From Where We Will Pickup The Book</h4>
+            <span>{{form.pickuplocation}}</span>
+            
+        </div>
+        {% comment %} {{ form.as_p }} {% endcomment %}
+        <input class='btn btn-success btn-lg  mt-4' type="submit" href="savebook" value="Save Book">
+    </form>
+</div>
+
+{% endif %}
+{% endblock body %}

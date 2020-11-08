@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from . forms import sellbookform 
+from . forms import sellbookform
 from .models import Order,TrackUpdate
 # Create your views here.
 def loginsignup(request):
@@ -14,7 +14,7 @@ def home(request):
     book = books.objects.all()
     categories = books.objects.values('category')
     ca = {item['category'] for item in categories}
-    cats = list(ca) 
+    cats = list(ca)
     for cat in cats:
         prod = books.objects.filter(category = cat)
         allProds.append([prod,range(len(prod))])
@@ -22,7 +22,7 @@ def home(request):
     return render(request,'home/home.html',params)
 
 def handleSignup(request):
-    
+
     if request.method =='POST':
         username = request.POST['username']
         email = request.POST['signupemail']
@@ -35,17 +35,17 @@ def handleSignup(request):
             messages.error(request, "User name must be under 25 Characters")
             return redirect('/')
         if pass1 != pass2:
-            messages.error(request, "Password do not match")   
-            return redirect('/') 
-       
-        myuser = User.objects.create_user(username=username,email=email,password=pass2)   
+            messages.error(request, "Password do not match")
+            return redirect('/')
+
+        myuser = User.objects.create_user(username=username,email=email,password=pass2)
         myuser.first_name = fname
         myuser.last_name = lname
         myuser.save()
         messages.success(request,'Your account has been created Successfully ')
         return redirect('/')
     else:
-        return HttpResponse('NOT ALLOWED')   
+        return HttpResponse('NOT ALLOWED')
 
 def handleLogin(request):
     loginusername = request.POST['loginusername']
@@ -57,17 +57,17 @@ def handleLogin(request):
         return redirect('/')
     else:
         messages.error(request,"Please Enter the username or password correctly!")
-        return redirect('/')    
+        return redirect('/')
 
 @login_required(login_url='/loginsignup')
 def handleLogout(request):
     logout(request)
     messages.success(request,"Successfully logged out")
-    return redirect('/')      
+    return redirect('/')
 
 @login_required(login_url='/loginsignup')
 def sellbook(request):
-    context ={'form': sellbookform()} 
+    context ={'form': sellbookform()}
     return render(request, "home/sellbook.html", context)
 
 @login_required(login_url='/loginsignup')
@@ -84,7 +84,7 @@ def savebook(request):
         newbook.save()
         messages.success(request,'Your post has been added successfully, Thank you for your great effort.')
     except:
-        messages.error(request,"Sorry! unable to Process..")    
+        messages.error(request,"Sorry! unable to Process..")
     return redirect('/')
 
 @login_required(login_url='/loginsignup')
@@ -125,7 +125,7 @@ def search(request):
         allposts = Post.objects.none()
         messages.error(request,'Please enter more than 4 characters')
         redirect('/')
-    else:    
+    else:
         allpoststitle = books.objects.filter(book_name__icontains=searchquery)
         allpostscontent = books.objects.filter(category__icontains=searchquery)
         allposts = allpoststitle.union(allpostscontent)
@@ -133,4 +133,5 @@ def search(request):
         return render(request,'home/search.html',context)
     return render(request,'home/search.html')
 
-    
+def contact(request):
+    return render(request, 'home/contact.html', {})

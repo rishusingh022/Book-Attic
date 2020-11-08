@@ -33,7 +33,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-       
+
         <li class="nav-item active">
           <a class="nav-link" href="TrackOrder">TrackYourOrder</a>
         </li>
@@ -50,11 +50,11 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 <button type="button " id="yoclear" class="btn btn-outline-primary mx-2">Clear Cart</button>
 
 
-     
+
 
       {% if user.is_authenticated %}
       <div class="btn-group">
-        
+
         <button type="button " class="btn btn-danger mx-2 dropdown-toggle"
           style=" box-shadow: none; " data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
@@ -66,7 +66,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
           <ul>
             <li><a href="/sellbook" class="dropdown-item pl-0" style="background-color: transparent;"
                 type="button">Sell Book</a></li>
-            
+
             <li><a href="/logout" class="dropdown-item pl-0" style="background-color: transparent;"
                 type="button">Logout</a></li>
           </ul>
@@ -248,7 +248,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 
         </footer>
     </div>
-    
+
     <style>
 
     #page-container {
@@ -283,7 +283,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous">
-    
+
     </script>
 {% block script %}
 {% endblock script %}

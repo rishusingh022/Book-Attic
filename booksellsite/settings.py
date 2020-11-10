@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -132,3 +132,11 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 
 }
+
+#email settings
+EMAIL_HOST='localhost'
+EMAIL_PORT='1025'
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD='password'
+EMAIL_USE_TLS=False
+#EMAIL_USE_SSL=False

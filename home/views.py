@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from . forms import sellbookform
+from . forms import sellbookform, ContactForm
 from .models import Order,TrackUpdate
-# Create your views here.
+from django.core.mail import send_mail
+
 def loginsignup(request):
     return render(request,'home/loginlink.html')
 def home(request):
@@ -133,5 +134,49 @@ def search(request):
         return render(request,'home/search.html',context)
     return render(request,'home/search.html')
 
+#def contact(request):
+#        if request.method == "POST":
+#            form_name=request.POST['from_name']
+#            form_lastname=request.POST['from_lastname']
+#            form_email=request.POST['from_email']
+#        form_phone=request.POST['from_phone']
+#        form_message=request.POST['from_message']
+#
+#        #send an Email
+#        send_mail(
+#        form_name,#subject
+#        form_message,#message
+#        form_email,#email from
+#        ['gkaur2_be19@thapar.edu'],#email to
+#        )
+#
+#        return render(request, 'home/contact.html', {'form_name':form_name})
+#    else:
+#        return render(request, 'home/contact.html', {})
 def contact(request):
-    return render(request, 'home/contact.html', {})
+    name=''
+    email=''
+    comment=''
+
+
+    form= ContactForm(request.POST or None)
+    if form.is_valid():
+        name= form.cleaned_data.get("name")
+        email= form.cleaned_data.get("email")
+        comment=form.cleaned_data.get("comment")
+
+
+        subject= "A Visitor's Comment"
+
+
+        comment= name + " with the email, " + email + ", sent the following message:\n\n" + comment;
+        send_mail(subject, comment, email , ['gkaur2_be19@thapar.edu'])
+
+
+        context= {'name': name}
+
+        return render(request, 'home/contact.html', context)
+
+    else:
+        context= {'form': form}
+        return render(request, 'home/contact.html', context)

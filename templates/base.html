@@ -20,7 +20,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
     <a class="navbar-brand" href="/">
       <img src="../media/home/images/img/mainlogo.png" width="30" height="30" class="d-inline-block align-top">
-      <b>SellBookOnline</b>
+      <b>SellBook-TIET</b>
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
@@ -33,10 +33,13 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-       
+
         <li class="nav-item active">
-          <a class="nav-link" href="TrackOrder">Track Order</a>
+          <a class="nav-link" href="TrackOrder">TrackYourOrder</a>
         </li>
+        <!--<li class="nav-item active">
+          <a class="nav-link" href="contact">Contact Us</a>
+        </li>-->
       </ul>
       <form action="search" method="get" class="form-inline my-2 my-lg-0">
       {% csrf_token %}
@@ -50,11 +53,11 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 <button type="button " id="yoclear" class="btn btn-outline-primary mx-2">Clear Cart</button>
 
 
-     
+
 
       {% if user.is_authenticated %}
       <div class="btn-group">
-        
+
         <button type="button " class="btn btn-danger mx-2 dropdown-toggle"
           style=" box-shadow: none; " data-toggle="dropdown" aria-haspopup="true"
           aria-expanded="false">
@@ -66,7 +69,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
           <ul>
             <li><a href="/sellbook" class="dropdown-item pl-0" style="background-color: transparent;"
                 type="button">Sell Book</a></li>
-            
+
             <li><a href="/logout" class="dropdown-item pl-0" style="background-color: transparent;"
                 type="button">Logout</a></li>
           </ul>
@@ -206,7 +209,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
 
               <div style="text-align: center;">
                 <h5 style='margin-top: 30%;'>
-                  Don't Have SellBookOnline Account?
+                  Don't Have SellBookTIET Account?
                 </h5>
                 <button data-dismiss="modal" type="button" class="mt-4 btn btn-outline-success btn-block"
                   data-toggle="modal" data-target="#signupmodal">
@@ -243,12 +246,12 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
         <footer id="footer">
 
                 <div class="container mt-2 text-center">
-                    &copy; Copyright 2020 | SellBookOnline.com
+                    &copy; Copyright 2020 | SellBook-TIET.
                 </div>
 
         </footer>
     </div>
-    
+
     <style>
 
     #page-container {
@@ -265,7 +268,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
     bottom: 0;
     width: 100%;
     height: 2.5rem;
-    background-color: white
+    background-color: grey;
                 /* Footer height */
     }
 
@@ -283,7 +286,7 @@ sagittis lacus vel augue laoreet rutrum faucibus.">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
     integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
     crossorigin="anonymous">
-    
+
     </script>
 {% block script %}
 {% endblock script %}

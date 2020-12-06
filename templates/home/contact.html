@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block title %}
+Contact Us
+{% endblock title %}
+{% block body %}
+
+{% if name %}
+<center>
+  <h2>Thanks {{name}}!</h2>
+  <br/><hr/>
+  <p>Your message has reached us. You will get a response soon.</p>
+</center>
+{% else %}
+
+<div class="modal-dialog modal-dialog-centered mt-0 mb-0 pt-0 pb-0" style='border: none; height: 100%;'>
+  <div class="modal-content mt-0 mb-0 pt-0 pb-0" style='border: none; border-radius: 0px;height: 100%;'>
+    <div class="container">
+      <div class="mt-3" style='text-align: center;'>
+        <h5 class="modal-title" style="font-family: 'El Messiri', sans-serif; font-size: 30px; font-weight: 700;"
+         id="signupmodal">Contact Form</h5>
+      </div>
+      <div class="container">
+        <div class="modal-body pt-1">
+           <form action="https://formsubmit.co/ssingh19_be19@thapar.edu" method="POST" class="form-horizontal" style="font-family: 'El Messiri', sans-serif; font-weight:400; font-size: 20px;">
+           {% csrf_token %}
+             <div class="control-label col-sm-2">
+             {{ form.as_p }}
+             </div>
+           <div class="mt-4" style='border-top: none;'>
+              <button style='margin-right: 0px; margin-left: 0px;' class='btn btn-success btn-block btn-lg '
+              type="submit">Submit</button>
+           </div>
+           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% endblock%}
+<!--<html>
+    <head>
+        <title>Contact Us!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <link href='custom.css' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-8 col-lg-offset-2">
+
+                    <center>
+                      <h2>Thanks {{form_name}}!</h2>
+                    </center>
+
+                    <h1>Contact Us!</h1>
+
+                    <p class="lead">Post your Problems if any here. We are always there for you.</p>
+
+
+                    <form id="contact-form" method="post"  role="form">
+
+    <div class="messages"></div>
+
+    <div class="controls">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_name">Firstname *</label>
+                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_lastname">Lastname *</label>
+                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_email">Email *</label>
+                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_phone">Phone</label>
+                    <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Please enter your phone">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="form_message">Message *</label>
+                    <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <input type="submit" class="btn btn-success btn-send" value="Send message">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted"><strong>*</strong> These fields are required. </p>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="validator.js"></script>
+        <script src="contact.js"></script>
+    </body
+</html>-->

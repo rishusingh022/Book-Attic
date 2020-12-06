@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from . forms import sellbookform 
+from . forms import sellbookform, ContactForm
 from .models import Order,TrackUpdate
-# Create your views here.
+from django.core.mail import send_mail
+
 def loginsignup(request):
     return render(request,'home/loginlink.html')
 def home(request):
@@ -14,7 +15,7 @@ def home(request):
     book = books.objects.all()
     categories = books.objects.values('category')
     ca = {item['category'] for item in categories}
-    cats = list(ca) 
+    cats = list(ca)
     for cat in cats:
         prod = books.objects.filter(category = cat)
         allProds.append([prod,range(len(prod))])
@@ -22,7 +23,7 @@ def home(request):
     return render(request,'home/home.html',params)
 
 def handleSignup(request):
-    
+
     if request.method =='POST':
         username = request.POST['username']
         email = request.POST['signupemail']
@@ -35,17 +36,17 @@ def handleSignup(request):
             messages.error(request, "User name must be under 25 Characters")
             return redirect('/')
         if pass1 != pass2:
-            messages.error(request, "Password do not match")   
-            return redirect('/') 
-       
-        myuser = User.objects.create_user(username=username,email=email,password=pass2)   
+            messages.error(request, "Password do not match")
+            return redirect('/')
+
+        myuser = User.objects.create_user(username=username,email=email,password=pass2)
         myuser.first_name = fname
         myuser.last_name = lname
         myuser.save()
         messages.success(request,'Your account has been created Successfully ')
         return redirect('/')
     else:
-        return HttpResponse('NOT ALLOWED')   
+        return HttpResponse('NOT ALLOWED')
 
 def handleLogin(request):
     loginusername = request.POST['loginusername']
@@ -57,17 +58,17 @@ def handleLogin(request):
         return redirect('/')
     else:
         messages.error(request,"Please Enter the username or password correctly!")
-        return redirect('/')    
+        return redirect('/')
 
 @login_required(login_url='/loginsignup')
 def handleLogout(request):
     logout(request)
     messages.success(request,"Successfully logged out")
-    return redirect('/')      
+    return redirect('/')
 
 @login_required(login_url='/loginsignup')
 def sellbook(request):
-    context ={'form': sellbookform()} 
+    context ={'form': sellbookform()}
     return render(request, "home/sellbook.html", context)
 
 @login_required(login_url='/loginsignup')
@@ -84,7 +85,7 @@ def savebook(request):
         newbook.save()
         messages.success(request,'Your post has been added successfully, Thank you for your great effort.')
     except:
-        messages.error(request,"Sorry! unable to Process..")    
+        messages.error(request,"Sorry! unable to Process..")
     return redirect('/')
 
 @login_required(login_url='/loginsignup')
@@ -125,7 +126,7 @@ def search(request):
         allposts = Post.objects.none()
         messages.error(request,'Please enter more than 4 characters')
         redirect('/')
-    else:    
+    else:
         allpoststitle = books.objects.filter(book_name__icontains=searchquery)
         allpostscontent = books.objects.filter(category__icontains=searchquery)
         allposts = allpoststitle.union(allpostscontent)
@@ -133,4 +134,49 @@ def search(request):
         return render(request,'home/search.html',context)
     return render(request,'home/search.html')
 
-    
+#def contact(request):
+#        if request.method == "POST":
+#            form_name=request.POST['from_name']
+#            form_lastname=request.POST['from_lastname']
+#            form_email=request.POST['from_email']
+#        form_phone=request.POST['from_phone']
+#        form_message=request.POST['from_message']
+#
+#        #send an Email
+#        send_mail(
+#        form_name,#subject
+#        form_message,#message
+#        form_email,#email from
+#        ['gkaur2_be19@thapar.edu'],#email to
+#        )
+#
+#        return render(request, 'home/contact.html', {'form_name':form_name})
+#    else:
+#        return render(request, 'home/contact.html', {})
+def contact(request):
+    name=''
+    email=''
+    comment=''
+
+
+    form= ContactForm(request.POST or None)
+    if form.is_valid():
+        name= form.cleaned_data.get("name")
+        email= form.cleaned_data.get("email")
+        comment=form.cleaned_data.get("comment")
+
+
+        subject= "A Visitor's Comment"
+
+
+        comment= name + " with the email, " + email + ", sent the following message:\n\n" + comment;
+        send_mail(subject, comment, email , ['gkaur2_be19@thapar.edu'])
+
+
+        context= {'name': name}
+
+        return render(request, 'home/contact.html', context)
+
+    else:
+        context= {'form': form}
+        return render(request, 'home/contact.html', context)

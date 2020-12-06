@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'af7^)tlqwxe^3%s1q%*leke=vbg_4py_5(9#@yh%t$dut)do&7'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -39,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home.apps.HomeConfig',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -53,7 +54,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'booksellsite.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -101,6 +101,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Internationalization
@@ -132,3 +133,12 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 
 }
+
+
+#email settings
+EMAIL_HOST='localhost'
+EMAIL_PORT='1025'
+EMAIL_HOST_USER=''
+EMAIL_HOST_PASSWORD='password'
+EMAIL_USE_TLS=False
+#EMAIL_USE_SSL=False

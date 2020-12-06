@@ -31,16 +31,20 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/media/home/images/img" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\wsl$\kali-linux\home\swapnil\mywork\new\OldBooksell-purchase_website" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="\\wsl$\kali-linux\home\swapnil\mywork\OldBooksell-purchase_website\media\home\images\img" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -54,10 +58,21 @@
       <updated>1604670314983</updated>
       <workItem from="1604670317359" duration="4720000" />
       <workItem from="1604783648177" duration="26000" />
+      <workItem from="1607245509739" duration="3434000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="407" y="143" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607246948498">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="407" y="143" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1607246948498" />
+    <state x="297" y="151" key="run.anything.popup" timestamp="1607247956634">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1607247956634" />
   </component>
 </project>

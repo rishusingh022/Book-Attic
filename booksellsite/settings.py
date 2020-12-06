@@ -27,7 +27,7 @@ SECRET_KEY = 'af7^)tlqwxe^3%s1q%*leke=vbg_4py_5(9#@yh%t$dut)do&7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','booksellwebsite.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','booksellwebsite1.herokuapp.com']
 
 # Application definition
 

@@ -1,0 +1,6 @@
+#contact-form fieldset:not([disabled]) .loader {
+	display: none;
+}
+#contact-form fieldset[disabled] .loader {
+	display: inline-block;
+}

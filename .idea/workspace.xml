@@ -42,9 +42,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
   </component>
@@ -58,7 +58,8 @@
       <updated>1604670314983</updated>
       <workItem from="1604670317359" duration="4720000" />
       <workItem from="1604783648177" duration="26000" />
-      <workItem from="1607245509739" duration="7314000" />
+      <workItem from="1607245509739" duration="8557000" />
+      <workItem from="1607275168710" duration="1565000" />
     </task>
     <servers />
   </component>
